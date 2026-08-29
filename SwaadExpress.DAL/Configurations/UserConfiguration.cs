@@ -42,8 +42,7 @@ namespace SwaadExpress.DAL.Configurations
                  .IsRequired();
 
             builder.Property(e => e.UpdatedAt)
-                 .HasColumnType("timestamp without time zone")
-                .IsRequired();
+                 .HasColumnType("timestamp without time zone");
         }
     }
 }
