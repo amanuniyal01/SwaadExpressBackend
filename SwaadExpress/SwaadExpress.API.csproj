@@ -16,10 +16,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Modal\Dto\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

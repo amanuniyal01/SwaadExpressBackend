@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="SwaadExpress/SwaadExpress.csproj" />
+  <Project Path="SwaadExpress.Application/SwaadExpress.Application.csproj" Id="23a2da35-0ff3-4796-916b-5d34c603458d" />
+  <Project Path="SwaadExpress.DAL/SwaadExpress.DAL.csproj" Id="bf793ae3-7c11-44fb-8df2-81344896bdd7" />
+  <Project Path="SwaadExpress.Domain/SwaadExpress.Domain.csproj" Id="2c5cd522-f51a-4376-b1bf-5ccee4859dc1" />
+  <Project Path="SwaadExpress/SwaadExpress.API.csproj" />
 </Solution>
