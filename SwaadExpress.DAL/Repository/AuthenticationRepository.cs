@@ -1,6 +1,6 @@
 ﻿namespace SwaadExpress.Repositories
 {
-    public class Testingcs
+    public class AuthenticationRepository
     {
     }
 }
