@@ -1,11 +1,14 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-public class AppDbContext : DbContext
+
+namespace SwaadExpress.DAL.Data
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
 
+        //public DbSet<Product> Products { get; set; } = null!;
     }
-
 }
