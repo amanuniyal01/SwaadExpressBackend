@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using SwaadExpress.DAL.Data;
+using SwaadExpress.DAL.RegisterServices;
+using SwaadExpress.DAL.CustomValidators;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
+//Custom Validators
+builder.Services.AddCustomValidators();
 
 builder.Services.AddOpenApi();
 // Enable Swagger/OpenAPI services
@@ -16,16 +21,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//Register Dependencies
+builder.Services.RegisterDependencies();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     // Use the standard Swagger middleware so the UI is served at /swagger
-    app.UseSwagger();
-    app.UseSwaggerUI();
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

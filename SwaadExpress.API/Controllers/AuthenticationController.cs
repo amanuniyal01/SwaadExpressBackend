@@ -2,11 +2,11 @@
 
 namespace SwaadExpress.Controllers
 {
-    public class AuthenticationController : Controller
+    [Route("api/v1/[controller]")]
+    [ApiController]
+    public class AuthenticationController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+
+
     }
 }
