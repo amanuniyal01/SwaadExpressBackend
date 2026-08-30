@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 using SwaadExpress.Domain.Modal.Entity;
 
 namespace SwaadExpress.DAL.Configurations

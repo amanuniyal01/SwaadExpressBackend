@@ -9,7 +9,7 @@ namespace SwaadExpress.DAL.RegisterServices
     {
         public static IServiceCollection RegisterDependencies(this IServiceCollection services)
         {
-
+            return services;
         }
     }
 }

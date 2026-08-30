@@ -3,6 +3,7 @@ using SwaadExpress.DAL.Data;
 using SwaadExpress.DAL.RegisterServices;
 using SwaadExpress.DAL.CustomValidators;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
