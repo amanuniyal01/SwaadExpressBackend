@@ -20,5 +20,9 @@ namespace SwaadExpress.Domain.Modal.Entity
 
         public DateTime? UpdatedAt { get; set; } = null;
 
+
+        //Navigation
+        public virtual UserOtps Otp { get; set; }
+
     }
 }

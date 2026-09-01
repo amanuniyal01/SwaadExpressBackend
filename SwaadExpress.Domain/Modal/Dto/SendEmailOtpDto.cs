@@ -7,5 +7,6 @@ namespace SwaadExpress.Domain.Modal.Dto
     public class SendEmailOtpDto
     {
         public string Email { get; set; }
+        public string Password { get; set; }
     }
 }
