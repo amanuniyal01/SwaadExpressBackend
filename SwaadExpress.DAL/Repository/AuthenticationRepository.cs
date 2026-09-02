@@ -13,13 +13,14 @@ namespace SwaadExpress.Repositories
             _dbContext = dbContext;
         }
 
-        public  async Task<bool> IsUserAlreadyExist(UserEntity user)
+
+        public  async Task<bool> IsUserAlreadyExistRepository(UserEntity user)
         {
             //Checking if user is already Present
             return await _dbContext.Users.AnyAsync(x => x.Id == user.Id || x.Email == user.Email);
 
         }
-        public async Task RegisterUser(UserEntity user)
+        public async Task RegisterUserRepository(UserEntity user)
         {
             //Simply Just add User to the Table
             var result = await _dbContext.Users.AddAsync(user);

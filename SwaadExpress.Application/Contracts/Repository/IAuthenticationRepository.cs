@@ -8,8 +8,8 @@ namespace SwaadExpress.Application.Contracts.Repository
     public interface IAuthenticationRepository
     {
 
-         Task<bool> IsUserAlreadyExist(UserEntity user);
-        Task RegisterUser(UserEntity user);
+         Task<bool> IsUserAlreadyExistRepository(UserEntity user);
+        Task RegisterUserRepository(UserEntity user);
 
     }
 }

@@ -1,13 +1,17 @@
 using Microsoft.EntityFrameworkCore;
+using SwaadExpress.Application.Mappers;
+using SwaadExpress.DAL.CustomValidators;
 using SwaadExpress.DAL.Data;
 using SwaadExpress.DAL.RegisterServices;
-using SwaadExpress.DAL.CustomValidators;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+//mapping to convert req to entity.
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 //Custom Validators
 builder.Services.AddCustomValidators();
