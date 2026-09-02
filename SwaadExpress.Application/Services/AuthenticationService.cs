@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SwaadExpress.Application.Contracts.Repository;
 using SwaadExpress.Domain.Modal.Dto;
+using SwaadExpress.Domain.Modal.Entity;
 using SwaadExpress.Interfaces.serviceInterface;
 
 namespace SwaadExpress.Services
@@ -18,16 +19,27 @@ namespace SwaadExpress.Services
         public async Task<ResponseDto> RegisterUserService(RegisterUserDto user)
 
         {
-            var userEntity=_mapper.Map<>
-            var isUserAlreadyExist = await _authenticateRepo.IsUserAlreadyExistRepository(user);
+            var userEntity = _mapper.Map<UserEntity>(user);
+            var isUserAlreadyExist = await _authenticateRepo.IsUserAlreadyExistRepository(userEntity);
             if (isUserAlreadyExist)
             {
                 return new ResponseDto()
                 {
                     Success = false,
-                    Message = "Mobile Number or Email is already Registered."
+                    Message = " Email is already Registered."
                 };
             }
+
+            var result = await _authenticateRepo.RegisterUserRepository(userEntity);
+
+            //if (result == null)
+            //{
+            //    return new ResponseDto()
+            //    {
+            //        Success = false,
+            //        Message = "Unable to Register User"
+            //    };
+            //}
 
             return new ResponseDto()
             {

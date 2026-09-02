@@ -37,11 +37,11 @@ namespace SwaadExpress.DAL.Configurations
                 .HasDefaultValue(false);
 
             builder.Property(e => e.CreatedAt)
-                 .HasColumnType("timestamp without time zone")
-                 .IsRequired();
+             .HasColumnType("timestamp with time zone")
+             .IsRequired();
 
             builder.Property(e => e.UpdatedAt)
-                 .HasColumnType("timestamp without time zone");
+                .HasColumnType("timestamp with time zone");
         }
     }
 }

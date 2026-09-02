@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SwaadExpress.Application.Contracts.Repository;
 using SwaadExpress.DAL.Data;
+using SwaadExpress.Domain.Modal.Dto;
 using SwaadExpress.Domain.Modal.Entity;
 namespace SwaadExpress.Repositories
 {
@@ -17,13 +18,19 @@ namespace SwaadExpress.Repositories
         public  async Task<bool> IsUserAlreadyExistRepository(UserEntity user)
         {
             //Checking if user is already Present
-            return await _dbContext.Users.AnyAsync(x => x.Id == user.Id || x.Email == user.Email);
+            return await _dbContext.Users.AnyAsync(x=>x.Email == user.Email);
 
         }
-        public async Task RegisterUserRepository(UserEntity user)
+        public async Task<UserEntity> RegisterUserRepository(UserEntity user)
         {
-            //Simply Just add User to the Table
-            var result = await _dbContext.Users.AddAsync(user);
+            // Add user to Users table
+           await _dbContext.Users.AddAsync(user);
+
+            // Save changes to the database
+            await _dbContext.SaveChangesAsync();
+
+            return user;
+            
         }
     }
 }

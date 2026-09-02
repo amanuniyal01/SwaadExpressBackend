@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SwaadExpress.Domain.Modal.Dto;
 using SwaadExpress.Domain.Modal.Entity;
 
 namespace SwaadExpress.Application.Contracts.Repository
@@ -9,7 +10,7 @@ namespace SwaadExpress.Application.Contracts.Repository
     {
 
          Task<bool> IsUserAlreadyExistRepository(UserEntity user);
-        Task RegisterUserRepository(UserEntity user);
+        Task<UserEntity>  RegisterUserRepository(UserEntity user);
 
     }
 }
