@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SwaadExpress.Application.Contracts.Repository;
+using SwaadExpress.Application.Contracts.Service;
 using SwaadExpress.Domain.Constants;
 using SwaadExpress.Domain.Modal.Dto;
 using SwaadExpress.Domain.Modal.Entity;
@@ -12,14 +13,17 @@ namespace SwaadExpress.Services
     {
         private readonly IAuthenticationRepository _authenticateRepo;
         private readonly IUserOtpRepository _userOtpRepo;
+        private readonly ISendEmailService _sendEmailService;
         private readonly IMapper _mapper;
 
         public AuthenticationService(IAuthenticationRepository authenticationRepository,
             IUserOtpRepository userOtpRepository,
+            ISendEmailService sendEmailService,
              IMapper mapper)
         {
             _authenticateRepo = authenticationRepository;
             _userOtpRepo = userOtpRepository;
+            _sendEmailService = sendEmailService;
             _mapper = mapper;
         }
 
@@ -37,7 +41,7 @@ namespace SwaadExpress.Services
                 };
             }
 
-            var result = await _authenticateRepo.RegisterUserRepository(userEntity);
+            //var result = await _authenticateRepo.RegisterUserRepository(userEntity);
 
             //if (result == null)
             //{
@@ -72,6 +76,7 @@ namespace SwaadExpress.Services
                 UserEntity userEntity = new UserEntity()
                 {
                     Email = sendLoginOtpDto.Email,
+                    //UserName=
                     Otp = new UserOtpEntity()
                     {
                         Otp = otp,
