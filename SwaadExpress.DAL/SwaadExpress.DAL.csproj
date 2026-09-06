@@ -18,6 +18,8 @@
 		</PackageReference>
 
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+
+		<PackageReference Include="Resend" Version="0.16.0" />
 	</ItemGroup>
 
 	<ItemGroup>
