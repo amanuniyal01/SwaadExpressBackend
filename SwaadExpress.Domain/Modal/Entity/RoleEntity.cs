@@ -6,7 +6,7 @@ namespace SwaadExpress.Domain.Modal.Entity
 {
     public class RoleEntity
     {
-         public Guid Id { get; set; }
+         public int Id { get; set; }
          public string RoleName { get; set; }
          public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

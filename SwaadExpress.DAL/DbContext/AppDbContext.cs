@@ -8,6 +8,8 @@ namespace SwaadExpress.DAL.Data
         {
         }
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<UserOtpEntity> UserOtps { get; set; }
+        public DbSet <RoleEntity> UserRoles { get; set; }
 
         //public DbSet<Product> Products { get; set; } = null!;
      protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -24,7 +24,7 @@ namespace SwaadExpress.DAL.Configurations
                 .HasDefaultValue(false)
                 .IsRequired();
 
-            builder.Property(e => e.RoleId)
+            builder.Property(u => u.RoleId)
                  .IsRequired();
 
             builder.HasIndex(u => u.Email)
