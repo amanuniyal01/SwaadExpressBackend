@@ -13,8 +13,8 @@ namespace SwaadExpress.DAL.Configurations
             builder.HasKey(u => u.Id);
 
             builder.Property(u => u.UserName)
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
+                //.IsRequired();
 
             builder.Property(u => u.Email)
                 .HasMaxLength(256)
