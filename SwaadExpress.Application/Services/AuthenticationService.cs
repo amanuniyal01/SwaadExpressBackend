@@ -4,6 +4,7 @@ using SwaadExpress.Application.Contracts.Service;
 using SwaadExpress.Domain.Constants;
 using SwaadExpress.Domain.Modal.Dto;
 using SwaadExpress.Domain.Modal.Entity;
+using SwaadExpress.Domain.Modal.Enum;
 using SwaadExpress.Interfaces.serviceInterface;
 using static System.Net.WebRequestMethods;
 
@@ -13,18 +14,21 @@ namespace SwaadExpress.Services
     {
         private readonly IAuthenticationRepository _authenticateRepo;
         private readonly IUserOtpRepository _userOtpRepo;
+        private readonly IRolesRepository _roleRepo;
         private readonly ISendEmailService _sendEmailService;
         private readonly IMapper _mapper;
 
         public AuthenticationService(IAuthenticationRepository authenticationRepository,
             IUserOtpRepository userOtpRepository,
+            IRolesRepository roleRepo,
             ISendEmailService sendEmailService,
              IMapper mapper)
         {
             _authenticateRepo = authenticationRepository;
             _userOtpRepo = userOtpRepository;
             _sendEmailService = sendEmailService;
-            _mapper = mapper;
+            _roleRepo = roleRepo;
+            _mapper = mapper;   
         }
 
         public async Task<ResponseDto> RegisterUserService(RegisterUserDto user)
@@ -73,9 +77,11 @@ namespace SwaadExpress.Services
             // Case 1: No user exists yet for this email — create one with a fresh OTP.
             if (response == null)
             {
+                var roles = await _roleRepo.GetRoles();
                 UserEntity userEntity = new UserEntity()
                 {
                     Email = sendLoginOtpDto.Email,
+                    RoleId = roles.Where(r => r.RoleName == UserRoles.Admin.ToString()).Select(r => r.Id).FirstOrDefault(),
                     //UserName=
                     Otp = new UserOtpEntity()
                     {

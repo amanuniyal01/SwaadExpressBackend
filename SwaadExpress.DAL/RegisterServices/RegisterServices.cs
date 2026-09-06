@@ -20,6 +20,7 @@ namespace SwaadExpress.DAL.RegisterServices
 
             // Repositories
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IRolesRepository, RolesRepository>();
             services.AddScoped<IUserOtpRepository, UserOtpRepository>();
 
             // Email service (Resend)
