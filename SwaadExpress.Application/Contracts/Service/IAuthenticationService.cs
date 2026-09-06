@@ -7,5 +7,6 @@ namespace SwaadExpress.Interfaces.serviceInterface
     public interface IAuthenticationService
     {
         Task<ResponseDto> RegisterUserService(RegisterUserDto user);
+        Task<ResponseDto> SendLoginOtpToEmail(SendEmailOtpDto sendLoginOtpDto);
     }
 }

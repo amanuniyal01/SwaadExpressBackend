@@ -30,18 +30,24 @@ namespace SwaadExpress.DAL.Configurations
             builder.HasIndex(u => u.Email)
                 .IsUnique();
 
-            builder.Property(e => e.IsDeleted)
+            builder.Property(u => u.IsDeleted)
                 .HasDefaultValue(false);
 
-            builder.Property(e => e.IsBlocked)
+            builder.Property(u => u.IsBlocked)
                 .HasDefaultValue(false);
 
-            builder.Property(e => e.CreatedAt)
+            builder.Property(u => u.CreatedAt)
              .HasColumnType("timestamp with time zone")
              .IsRequired();
 
-            builder.Property(e => e.UpdatedAt)
+            builder.Property(u => u.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
+
+
+            builder.HasOne(u => u.Role)
+                .WithMany(r => r.Users)
+                .HasForeignKey(u => u.RoleId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

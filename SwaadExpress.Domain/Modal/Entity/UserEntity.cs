@@ -10,7 +10,7 @@ namespace SwaadExpress.Domain.Modal.Entity
         public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public bool IsEmailVerified { get; set; }
+        public bool IsEmailVerified { get; set; } = false;
 
         public int RoleId { get; set; }
         public bool IsDeleted { get; set; } = false;
@@ -22,7 +22,8 @@ namespace SwaadExpress.Domain.Modal.Entity
 
 
         //Navigation
-        public virtual UserOtps Otp { get; set; }
+        public virtual UserOtpEntity Otp { get; set; }  
+        public virtual RoleEntity Role { get; set; }  // One user can have only One Role.
 
     }
 }
