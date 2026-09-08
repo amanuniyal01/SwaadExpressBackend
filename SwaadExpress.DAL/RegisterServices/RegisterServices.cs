@@ -1,5 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using KaryaSync.ThirdPartyIntegrations.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Resend;
 using SwaadExpress.Application.Contracts.Repository;
+using SwaadExpress.Application.Contracts.Service;
+using SwaadExpress.DAL.Repository;
 using SwaadExpress.Interfaces.serviceInterface;
 using SwaadExpress.Repositories;
 using SwaadExpress.Services;
@@ -16,6 +20,12 @@ namespace SwaadExpress.DAL.RegisterServices
 
             // Repositories
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IRolesRepository, RolesRepository>();
+            services.AddScoped<IUserOtpRepository, UserOtpRepository>();
+
+            // Email service (Resend)
+            services.AddScoped<ISendEmailService, SendEmailService>();
+          
 
             return services;
         }

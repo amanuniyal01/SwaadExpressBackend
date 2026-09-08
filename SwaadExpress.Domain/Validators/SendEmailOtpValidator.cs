@@ -12,8 +12,8 @@ namespace SwaadExpress.Domain.Validators
                 .EmailAddress().WithMessage("Invalid email address");
 
 
-            RuleFor(x => x.Password)
-                .NotEmpty().WithMessage("Password Is Required");
+            //RuleFor(x => x.Password)
+            //    .NotEmpty().WithMessage("Password Is Required");
         }
         
 

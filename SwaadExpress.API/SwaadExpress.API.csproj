@@ -4,21 +4,27 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
+	  <UserSecretsId>c76633ef-bb7f-49ea-8a75-95784d3f134b</UserSecretsId>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="FluentValidation" Version="12.1.1" />
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+		<PackageReference Include="MailKit" Version="4.17.0" />
 
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
 
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.11" />
+
+		<PackageReference Include="Nanoid" Version="3.1.0" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
 
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
+
+		<PackageReference Include="Resend" Version="0.16.0" />
 
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
 	</ItemGroup>

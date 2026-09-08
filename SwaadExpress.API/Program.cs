@@ -1,14 +1,19 @@
 using Microsoft.EntityFrameworkCore;
+using Resend;
 using SwaadExpress.Application.Mappers;
 using SwaadExpress.DAL.CustomValidators;
 using SwaadExpress.DAL.Data;
 using SwaadExpress.DAL.RegisterServices;
+using SwaadExpress.Domain.Modal.Entity;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+
+
 
 //mapping to convert req to entity.
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -24,6 +29,10 @@ builder.Services.AddSwaggerGen();
 // Register DbContext before building the app
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings"));
 
 //Register Dependencies
 builder.Services.RegisterDependencies();

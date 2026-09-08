@@ -10,7 +10,8 @@ namespace SwaadExpress.Application.Contracts.Repository
     {
 
          Task<bool> IsUserAlreadyExistRepository(UserEntity user);
-        Task<UserEntity>  RegisterUserRepository(UserEntity user);
+        Task<ResponseDto> CreateUserRepository(UserEntity user);
+        Task<ResponseDto> UpdateUser(UserEntity userEntity);
 
     }
 }

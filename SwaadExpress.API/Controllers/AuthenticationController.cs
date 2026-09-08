@@ -11,11 +11,15 @@ namespace SwaadExpress.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IValidator<RegisterUserDto> _registerValidator;
+        private readonly IValidator<SendEmailOtpDto> _sendEmailOtpValidator;
         private readonly IAuthenticationService _authenticateService;
 
-            public AuthenticationController(IValidator<RegisterUserDto> registerValidator , IAuthenticationService authenticationService)
+            public AuthenticationController(IValidator<RegisterUserDto> registerValidator,
+                IValidator<SendEmailOtpDto> sendEmailOtpValidator
+                , IAuthenticationService authenticationService)
         {
             _registerValidator = registerValidator;
+            _sendEmailOtpValidator = sendEmailOtpValidator;
             _authenticateService = authenticationService;
         }
 
@@ -32,7 +36,19 @@ namespace SwaadExpress.Controllers
             return Ok(response);
             
         }
-        
+
+        [HttpPost("SendEmailLoginOtp")]
+        public async Task<ActionResult<ResponseDto>> SendEmailOtp(SendEmailOtpDto sendEmailOtpDto)
+        {
+            var validationResult = await _sendEmailOtpValidator.ValidateAsync(sendEmailOtpDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
+            var response = await _authenticateService.SendLoginOtpToEmail(sendEmailOtpDto);
+            return Ok(response);
+        }
 
     }
 }

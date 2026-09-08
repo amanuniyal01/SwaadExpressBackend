@@ -21,7 +21,7 @@ namespace SwaadExpress.Repositories
             return await _dbContext.Users.AnyAsync(x=>x.Email == user.Email);
 
         }
-        public async Task<UserEntity> RegisterUserRepository(UserEntity user)
+        public async Task<ResponseDto> CreateUserRepository(UserEntity user)
         {
             // Add user to Users table
            await _dbContext.Users.AddAsync(user);
@@ -29,8 +29,26 @@ namespace SwaadExpress.Repositories
             // Save changes to the database
             await _dbContext.SaveChangesAsync();
 
-            return user;
+            return new ResponseDto()
+            {
+                Success = true,
+                Message = "User Created Successfully."
+            };
             
+        }
+
+        public async Task<ResponseDto> UpdateUser(UserEntity userEntity)
+        {
+
+
+            _dbContext.Update(userEntity);
+            await _dbContext.SaveChangesAsync();
+            return new ResponseDto
+            {
+                Success = true,
+                Message = "User details updated successfully",
+            };
+
         }
     }
 }
