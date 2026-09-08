@@ -25,8 +25,7 @@ namespace SwaadExpress.DAL.RegisterServices
 
             // Email service (Resend)
             services.AddScoped<ISendEmailService, SendEmailService>();
-            services.AddHttpClient<ResendClient>();
-            services.AddTransient<IResend, ResendClient>();
+          
 
             return services;
         }

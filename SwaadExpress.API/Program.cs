@@ -13,13 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-builder.Services.AddHttpClient<ResendClient>();
-builder.Services.Configure<ResendClientOptions>(o =>
-{
-    o.ApiToken = builder.Configuration["EmailSettings:ResendApiKey"];
-});
-builder.Services.AddTransient<IResend, ResendClient>();
+
 
 //mapping to convert req to entity.
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -35,6 +29,10 @@ builder.Services.AddSwaggerGen();
 // Register DbContext before building the app
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings"));
 
 //Register Dependencies
 builder.Services.RegisterDependencies();
