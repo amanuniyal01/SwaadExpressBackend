@@ -178,5 +178,19 @@ namespace SwaadExpress.Services
                 Message = "Otp Sent Successfully."
             };
         }
+    
+        public async Task<TokenUserDetailsDto> LoginService(LoginDto loginDto)
+        {
+            var CurrentTime = DateTime.UtcNow;
+            TokenUserDetailsDto responseDto = new TokenUserDetailsDto();
+
+            //Get the Otp Details For the Requested Email.
+
+            return {
+
+            }
+
+        }
     }
+
 }

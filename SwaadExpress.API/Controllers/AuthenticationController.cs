@@ -58,7 +58,7 @@ namespace SwaadExpress.Controllers
 
 
         [HttpPost("Login")]
-        public async Task<ActionResult<ResponseDto>> Login(LoginDto loginDto)
+        public async Task<ActionResult<TokenResponseDto>> Login(LoginDto loginDto)
         {
             var validationResult = await _loginDtoValidator.ValidateAsync(loginDto);
 
@@ -67,6 +67,8 @@ namespace SwaadExpress.Controllers
                 return BadRequest(validationResult.Errors);
             }
 
+            var response = await _authenticateService.LoginService(loginDto);
+            return Ok(response);
         }
     }
 }
