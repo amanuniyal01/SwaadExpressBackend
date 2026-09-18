@@ -185,10 +185,38 @@ namespace SwaadExpress.Services
             TokenUserDetailsDto responseDto = new TokenUserDetailsDto();
 
             //Get the Otp Details For the Requested Email.
+            var response = await _userOtpRepo.GetUserOtpDetailsByEmail(loginDto.Email);
 
-            return {
+            //If i didnt get any response that means There is no otp present for this email.
 
+            if (response == null)
+            {
+                responseDto.Success = false;
+                responseDto.Message = "Invalid Email";
+                return responseDto;
             }
+
+            //Check if resulting otp's expire time is 1 min greater then current time.
+            if (response.ExpiryTime.AddMinutes(1) < CurrentTime)
+            {
+                responseDto.Success = false;
+                responseDto.Message = "Otp Expired";
+                return responseDto;
+            }
+
+            //If requested otp is not equal to generated otp.
+            if (response.Otp != loginDto.Otp)
+            {
+                responseDto.Success = false;
+                responseDto.Message = "Invalid Otp!";
+                return responseDto;
+            }
+
+            responseDto.Success = true;
+            responseDto.Token = "abcdefgh";
+            responseDto.Message = "Successfull";
+
+            return responseDto;
 
         }
     }

@@ -9,6 +9,8 @@ namespace SwaadExpress.Application.Contracts.Repository
     {
 
         Task<UserEntity> GetUserOtpDetails(string email);
-        
+        Task<UserOtpEntity> GetUserOtpDetailsByEmail(string email);
+
+
     }
 }

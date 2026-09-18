@@ -25,6 +25,7 @@ namespace SwaadExpress.Controllers
                 , IAuthenticationService authenticationService)
         {
             _registerValidator = registerValidator;
+            _loginDtoValidator = loginDtoValidator;
             _sendEmailOtpValidator = sendEmailOtpValidator;
             _authenticateService = authenticationService;
         }
