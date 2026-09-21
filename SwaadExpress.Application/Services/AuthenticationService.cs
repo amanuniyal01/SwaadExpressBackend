@@ -14,18 +14,21 @@ namespace SwaadExpress.Services
     {
         private readonly IAuthenticationRepository _authenticateRepo;
         private readonly IUserOtpRepository _userOtpRepo;
+        private readonly IUserRepository _userRepository;
         private readonly IRolesRepository _roleRepo;
         private readonly ISendEmailService _sendEmailService;
         private readonly IMapper _mapper;
 
         public AuthenticationService(IAuthenticationRepository authenticationRepository,
             IUserOtpRepository userOtpRepository,
+            IUserRepository userRepository,
             IRolesRepository roleRepo,
             ISendEmailService sendEmailService,
              IMapper mapper)
         {
             _authenticateRepo = authenticationRepository;
             _userOtpRepo = userOtpRepository;
+            _userRepository = userRepository;
             _sendEmailService = sendEmailService;
             _roleRepo = roleRepo;
             _mapper = mapper;   
@@ -188,7 +191,6 @@ namespace SwaadExpress.Services
             var response = await _userOtpRepo.GetUserOtpDetailsByEmail(loginDto.Email);
 
             //If i didnt get any response that means There is no otp present for this email.
-
             if (response == null)
             {
                 responseDto.Success = false;
@@ -211,6 +213,12 @@ namespace SwaadExpress.Services
                 responseDto.Message = "Invalid Otp!";
                 return responseDto;
             }
+
+            //Get the user Role.
+            var userWithRole = await _userRepository.GetUserWithRole(response.User.Id); 
+
+            //Generate and Save Token
+
 
             responseDto.Success = true;
             responseDto.Token = "abcdefgh";
