@@ -4,6 +4,7 @@ using Resend;
 using SwaadExpress.Application.Contracts.Common;
 using SwaadExpress.Application.Contracts.Repository;
 using SwaadExpress.Application.Contracts.Service;
+using SwaadExpress.Application.Services;
 using SwaadExpress.DAL.Repository;
 using SwaadExpress.Domain.Modal.Common;
 using SwaadExpress.Interfaces.serviceInterface;
@@ -19,7 +20,6 @@ namespace SwaadExpress.DAL.RegisterServices
         {
             // Services
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            services.AddScoped<IJwtOptions, JwtOptions>();
 
             // Repositories
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();

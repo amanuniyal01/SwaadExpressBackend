@@ -36,6 +36,7 @@ builder.Services.Configure<EmailSettings>(
 
 //Register Dependencies
 builder.Services.RegisterDependencies();
+builder.Services.RegisterJwtDependencies();
 
 var app = builder.Build();
 

@@ -33,7 +33,7 @@ namespace SwaadExpress.Application.Services
 
             };
 
-            //Create TOken on the basis of this info saved in appSettings.
+            //Create Token on the basis of this info saved in appSettings.
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Audience = _jwtoptions.Audience,
