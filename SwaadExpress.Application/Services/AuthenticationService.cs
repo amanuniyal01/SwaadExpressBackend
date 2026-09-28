@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SwaadExpress.Application.Contracts.Common;
 using SwaadExpress.Application.Contracts.Repository;
 using SwaadExpress.Application.Contracts.Service;
 using SwaadExpress.Domain.Constants;
@@ -17,6 +18,7 @@ namespace SwaadExpress.Services
         private readonly IUserRepository _userRepository;
         private readonly IRolesRepository _roleRepo;
         private readonly ISendEmailService _sendEmailService;
+        private readonly IJwtHandlerService _jwtHandler;
         private readonly IMapper _mapper;
 
         public AuthenticationService(IAuthenticationRepository authenticationRepository,
@@ -24,12 +26,14 @@ namespace SwaadExpress.Services
             IUserRepository userRepository,
             IRolesRepository roleRepo,
             ISendEmailService sendEmailService,
+            IJwtHandlerService jwtHandlerService,
              IMapper mapper)
         {
             _authenticateRepo = authenticationRepository;
             _userOtpRepo = userOtpRepository;
             _userRepository = userRepository;
             _sendEmailService = sendEmailService;
+            _jwtHandler = jwtHandlerService;
             _roleRepo = roleRepo;
             _mapper = mapper;   
         }
@@ -215,13 +219,13 @@ namespace SwaadExpress.Services
             }
 
             //Get the user Role.
-            var userWithRole = await _userRepository.GetUserWithRole(response.User.Id); 
+            var userWithRole = await _userRepository.GetUserWithRole(response.User.Id);
 
             //Generate and Save Token
-
+            var token =  _jwtHandler.GenerateToken(response.User, userWithRole.roleName);
 
             responseDto.Success = true;
-            responseDto.Token = "abcdefgh";
+            responseDto.Token = token;
             responseDto.Message = "Successfull";
 
             return responseDto;
