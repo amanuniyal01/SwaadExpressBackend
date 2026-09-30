@@ -6,13 +6,13 @@ namespace KaryaSync.DAL.RegisterServices
 {
     public static class AuthorizationForSwagger
     {
-        public static IServiceCollection EnableKaryaSyncAuthorizationInSwagger(this IServiceCollection services)
+        public static IServiceCollection EnableSwaadExpressAuthorizationSwagger(this IServiceCollection services)
         {
             services.Configure<SwaggerGenOptions>(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "KaryaSync API",
+                    Title = "Swaad Express API",
                     Version = "v1"
                 });
 
