@@ -11,6 +11,7 @@ namespace SwaadExpress.DAL.CustomValidators
 
         {
             services.AddValidatorsFromAssemblyContaining<SendEmailOtpValidator>();
+            services.AddValidatorsFromAssemblyContaining<LoginDtoValidator>();
             return services;
         }
     }

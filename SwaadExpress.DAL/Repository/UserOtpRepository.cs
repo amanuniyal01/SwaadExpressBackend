@@ -10,6 +10,7 @@ namespace SwaadExpress.DAL.Repository
 {
     public class UserOtpRepository : IUserOtpRepository
     {
+   
         private readonly AppDbContext _dbContext;
         public UserOtpRepository(AppDbContext dbContext)
         {
@@ -22,6 +23,19 @@ namespace SwaadExpress.DAL.Repository
                 );
 
             return result;
+        }
+
+        public async Task <UserOtpEntity> GetUserOtpDetailsByEmail(string email)
+        {
+            try
+            {
+                var result = await _dbContext.UserOtps.Include(x => x.User).FirstOrDefaultAsync(x => x.Email == email);
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
